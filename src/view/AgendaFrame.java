@@ -18,6 +18,8 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JFileChooser;
+import java.io.File;
 
 
 
@@ -676,80 +678,109 @@ private void initSpinner() {
 
 // Menyimpan semua data agenda ke file teks
 private void exportToTxt() {
-    try (BufferedWriter bw = new BufferedWriter(new FileWriter("agenda.txt"))) {
+    JFileChooser chooser = new JFileChooser();
+    chooser.setDialogTitle("Pilih lokasi untuk menyimpan file agenda");
 
-        for (AgendaItem a : manager.getSemuaAgenda()) {
-            // Hati-hati dengan ; di judul/deskripsi, untuk simpel kita ganti dengan spasi
-            String judul     = a.getJudul().replace(";", " ");
-            String deskripsi = a.getDeskripsi().replace(";", " ");
+    // nama default
+    chooser.setSelectedFile(new File("agenda.txt"));
 
-            String line = a.getTanggal()  + ";" +
-                          a.getWaktu()    + ";" +
-                          judul           + ";" +
-                          deskripsi       + ";" +
-                          a.getKategori() + ";" +
-                          a.getStatus()   + ";" +
-                          a.getPrioritas();
+    int result = chooser.showSaveDialog(this);
 
-            bw.write(line);
-            bw.newLine();
+    if (result == JFileChooser.APPROVE_OPTION) {
+        File file = chooser.getSelectedFile();
+
+        // kalau user tidak menulis .txt, tambahkan otomatis
+        if (!file.getName().toLowerCase().endsWith(".txt")) {
+            file = new File(file.getParentFile(), file.getName() + ".txt");
         }
 
-        JOptionPane.showMessageDialog(this,
-                "Export selesai. File: agenda.txt",
-                "Export",
-                JOptionPane.INFORMATION_MESSAGE);
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
 
-    } catch (IOException e) {
-        JOptionPane.showMessageDialog(this,
-                "Terjadi error saat export: " + e.getMessage(),
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
+            for (AgendaItem a : manager.getSemuaAgenda()) {
+                String judul     = a.getJudul().replace(";", " ");
+                String deskripsi = a.getDeskripsi().replace(";", " ");
+
+                String line = a.getTanggal()  + ";" +
+                              a.getWaktu()    + ";" +
+                              judul           + ";" +
+                              deskripsi       + ";" +
+                              a.getKategori() + ";" +
+                              a.getStatus()   + ";" +
+                              a.getPrioritas();
+
+                bw.write(line);
+                bw.newLine();
+            }
+
+            JOptionPane.showMessageDialog(this,
+                    "Export selesai.\nFile disimpan di:\n" + file.getAbsolutePath(),
+                    "Export",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Terjadi error saat export: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
+    // kalau CANCEL → tidak melakukan apa-apa
 }
+
 
 // Membaca data agenda dari file teks
 private void importFromTxt() {
-    try (BufferedReader br = new BufferedReader(new FileReader("agenda.txt"))) {
+    JFileChooser chooser = new JFileChooser();
+    chooser.setDialogTitle("Pilih file agenda (.txt) yang akan di-import");
 
-        manager.clearAll();  // kosongkan data lama dulu
+    int result = chooser.showOpenDialog(this);
 
-        String line;
-        while ((line = br.readLine()) != null) {
-            String[] parts = line.split(";", -1);  // -1: jangan buang kolom kosong
+    if (result == JFileChooser.APPROVE_OPTION) {
+        File file = chooser.getSelectedFile();
 
-            if (parts.length >= 7) {
-                String tanggal   = parts[0];
-                String waktu     = parts[1];
-                String judul     = parts[2];
-                String deskripsi = parts[3];
-                String kategori  = parts[4];
-                String status    = parts[5];
-                String prioritas = parts[6];
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 
-                AgendaItem item = new AgendaItem(
-                        tanggal, waktu, judul, deskripsi,
-                        kategori, status, prioritas
-                );
-                manager.tambahAgenda(item);
+            manager.clearAll();  // kosongkan data lama dulu
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(";", -1);
+
+                if (parts.length >= 7) {
+                    String tanggal   = parts[0];
+                    String waktu     = parts[1];
+                    String judul     = parts[2];
+                    String deskripsi = parts[3];
+                    String kategori  = parts[4];
+                    String status    = parts[5];
+                    String prioritas = parts[6];
+
+                    AgendaItem item = new AgendaItem(
+                            tanggal, waktu, judul, deskripsi,
+                            kategori, status, prioritas
+                    );
+                    manager.tambahAgenda(item);
+                }
             }
+
+            refreshTable();
+            bersihkanForm();
+
+            JOptionPane.showMessageDialog(this,
+                    "Import selesai dari file:\n" + file.getAbsolutePath(),
+                    "Import",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Terjadi error saat import: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
-
-        refreshTable();
-        bersihkanForm();
-
-        JOptionPane.showMessageDialog(this,
-                "Import selesai dari file: agenda.txt",
-                "Import",
-                JOptionPane.INFORMATION_MESSAGE);
-
-    } catch (IOException e) {
-        JOptionPane.showMessageDialog(this,
-                "Terjadi error saat import: " + e.getMessage(),
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
     }
+    // kalau CANCEL → tidak melakukan apa-apa
 }
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
