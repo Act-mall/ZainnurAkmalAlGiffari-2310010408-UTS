@@ -88,7 +88,8 @@ public class AgendaFrame extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setFont(new java.awt.Font("IntelOne Mono Medium", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(30, 85, 170));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Smart Agenda");
 
@@ -111,24 +112,31 @@ public class AgendaFrame extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
+        lblTanggal.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         lblTanggal.setText("Tanggal");
 
+        lblWaktu.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         lblWaktu.setText("Waktu");
 
+        lblJudul.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         lblJudul.setText("Judul");
 
+        lblDeskripsi.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         lblDeskripsi.setText("Deskripsi");
 
         txtDeskripsi.setColumns(20);
         txtDeskripsi.setRows(5);
         JScrollPane.setViewportView(txtDeskripsi);
 
+        lblKategori.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         lblKategori.setText("Kategori");
 
         cbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kuliah", "Kerja", "Pribadi", "Keluarga", " " }));
 
+        lblStatus.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         lblStatus.setText("Status");
 
+        lblPrioritas.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         lblPrioritas.setText("Prioritas");
 
         cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Belum", "Proses", "Selesai", " " }));
@@ -167,7 +175,7 @@ public class AgendaFrame extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(JScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
                             .addComponent(txtJudul))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,10 +234,13 @@ public class AgendaFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblAgenda);
 
-        lblCari.setText("Cari            :");
+        lblCari.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lblCari.setText("Cari                :");
 
         txtCari.setText(" ");
 
+        btnCari.setBackground(new java.awt.Color(108, 117, 125));
+        btnCari.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnCari.setText("Cari");
         btnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,13 +256,13 @@ public class AgendaFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblCari, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblCari, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnCari)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(0, 24, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -270,6 +281,8 @@ public class AgendaFrame extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel4.setLayout(new java.awt.GridLayout(1, 0));
 
+        btnTambah.setBackground(new java.awt.Color(40, 167, 9));
+        btnTambah.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         btnTambah.setText("Tambah");
         btnTambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -278,6 +291,8 @@ public class AgendaFrame extends javax.swing.JFrame {
         });
         jPanel4.add(btnTambah);
 
+        btnUbah.setBackground(new java.awt.Color(0, 123, 255));
+        btnUbah.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         btnUbah.setText("Ubah");
         btnUbah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,6 +301,8 @@ public class AgendaFrame extends javax.swing.JFrame {
         });
         jPanel4.add(btnUbah);
 
+        btnHapus.setBackground(new java.awt.Color(220, 53, 69));
+        btnHapus.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         btnHapus.setText("Hapus");
         btnHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -294,6 +311,8 @@ public class AgendaFrame extends javax.swing.JFrame {
         });
         jPanel4.add(btnHapus);
 
+        btnBersih.setBackground(new java.awt.Color(108, 117, 125));
+        btnBersih.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         btnBersih.setText("Bersih");
         btnBersih.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -302,6 +321,8 @@ public class AgendaFrame extends javax.swing.JFrame {
         });
         jPanel4.add(btnBersih);
 
+        btnImport.setBackground(new java.awt.Color(23, 162, 184));
+        btnImport.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         btnImport.setText("Import");
         btnImport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -309,6 +330,8 @@ public class AgendaFrame extends javax.swing.JFrame {
             }
         });
 
+        btnExport.setBackground(new java.awt.Color(23, 162, 184));
+        btnExport.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         btnExport.setText("Export");
         btnExport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -327,17 +350,18 @@ public class AgendaFrame extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(10, 10, 10))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                                 .addComponent(btnImport)
                                 .addGap(50, 50, 50)
                                 .addComponent(btnExport)
@@ -348,7 +372,7 @@ public class AgendaFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -358,7 +382,7 @@ public class AgendaFrame extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnImport)
                         .addComponent(btnExport)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
